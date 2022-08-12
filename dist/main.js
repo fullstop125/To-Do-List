@@ -109,13 +109,73 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
 
 /***/ }),
 
+/***/ "./src/addRemove.js":
+/*!**************************!*\
+  !*** ./src/addRemove.js ***!
+  \**************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"addMyNewList\": () => (/* binding */ addMyNewList),\n/* harmony export */   \"clearMyList\": () => (/* binding */ clearMyList),\n/* harmony export */   \"deleteMyList\": () => (/* binding */ deleteMyList),\n/* harmony export */   \"displayMyList\": () => (/* binding */ displayMyList),\n/* harmony export */   \"setMyEventListeners\": () => (/* binding */ setMyEventListeners)\n/* harmony export */ });\n/* harmony import */ var _eventSelector_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./eventSelector.js */ \"./src/eventSelector.js\");\n/* harmony import */ var _myList_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./myList.js */ \"./src/myList.js\");\n\n\nconst createToDo = (todo) => {\n  const divCont = document.createElement(\"div\");\n  const li = document.createElement(\"li\");\n  const checkMyClass = todo.completed === true ? \"marked\" : \"\";\n  const checkMyValue = todo.completed === true ? \"checked\" : \"\";\n  divCont.classList.add(\"div-container\");\n  li.classList.add(\"to-do-Element\");\n\n  li.innerHTML = `\n  <label class = \"task-label\">\n  <input type=\"checkbox\" class=\"checkbox\" ${checkMyValue}>\n  <input type=\"text\" class=\"task-description ${checkMyClass}\" value=\"${todo.description}\">\n  <input type = \" hidden\" class = \"\" value = \"${todo.id}\">\n  </label>\n  <i class=\"icon-ellipsis-vertical\"></i>\n  <i class=\"icon-trash\"></i>\n  `;\n  divCont.appendChild(li);\n  return divCont;\n};\nfunction setMyEventListeners() {\n  (0,_eventSelector_js__WEBPACK_IMPORTED_MODULE_0__.addNewElements)();\n  (0,_eventSelector_js__WEBPACK_IMPORTED_MODULE_0__.editMyListElements)();\n  (0,_eventSelector_js__WEBPACK_IMPORTED_MODULE_0__.deleteMyListElements)();\n  (0,_eventSelector_js__WEBPACK_IMPORTED_MODULE_0__.deleteAllMyListElements)();\n  (0,_eventSelector_js__WEBPACK_IMPORTED_MODULE_0__.dragDropEventListener)();\n  (0,_eventSelector_js__WEBPACK_IMPORTED_MODULE_0__.listMyCompletedElements)();\n}\nconst displayMyList = (todos) => {\n  const listDisplay = document.querySelector(\".list-data\");\n  todos.forEach((todo) => {\n    const div = createToDo(todo);\n    listDisplay.appendChild(div);\n  });\n};\nfunction addMyNewList() {\n  const inputData = document.querySelector(\".task-input\");\n  const listDisplay = document.querySelector(\".list-data\");\n  let listData = [];\n  if (localStorage.getitem(\"todos\")) {\n    listData = JSON.parse(localStorage.getItem(\"todos\"));\n  }\n  listData.push(new _myList_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"](inputData.value, false, listData.length + 1));\n  inputData.value = \"\";\n  listDisplay.innerHTML = \"\";\n  displayMyList(listData);\n  setMyEventListeners();\n}\nfunction deleteMyList(e) {\n  const listDisplay = document.querySelector(\".list-data\");\n  const removeElement = e.target.parentNode.parentNode;\n  listDisplay.removeChild(removeElement);\n}\nfunction clearMyList() {\n  const listDisplay = document.querySelector(\".list-data\");\n  const removeList = document.querySelectorAll(\".marked\");\n\n  removeList.forEach((e) => {\n    const removeElement = e.parentNode.parentNode;\n    listDisplay.removeChild(removeElement);\n  });\n}\n \n\n//# sourceURL=webpack://web-pack/./src/addRemove.js?");
+
+/***/ }),
+
+/***/ "./src/drag.js":
+/*!*********************!*\
+  !*** ./src/drag.js ***!
+  \*********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nfunction dropElements(dragElement, currentTask) {\n  const pastTask = currentTask;\n  const pastCont = currentTask.parentNode;\n  const newTask = dragElement;\n  const newCont = dragElement.parentNode;\n  pastCont.appendChild(newTask);\n  newCont.appendChild(pastTask);\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (dropElements);\n\n//# sourceURL=webpack://web-pack/./src/drag.js?");
+
+/***/ }),
+
+/***/ "./src/embedMyList.js":
+/*!****************************!*\
+  !*** ./src/embedMyList.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nfunction checkIsComplete(e) {\n    e.target.completed = e.target.checked ;\n    if (e.target.completed === true) {\n        e.currentTarget.nextElementSibling.classList.add('marked');\n    } \n    else {\n        e.currentTarget.nextElementSibling.classList.remove('marked');\n    }\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (checkIsComplete);\n\n//# sourceURL=webpack://web-pack/./src/embedMyList.js?");
+
+/***/ }),
+
+/***/ "./src/eventSelector.js":
+/*!******************************!*\
+  !*** ./src/eventSelector.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"addNewElements\": () => (/* binding */ addNewElements),\n/* harmony export */   \"deleteAllMyListElements\": () => (/* binding */ deleteAllMyListElements),\n/* harmony export */   \"deleteMyListElements\": () => (/* binding */ deleteMyListElements),\n/* harmony export */   \"dragDropEventListener\": () => (/* binding */ dragDropEventListener),\n/* harmony export */   \"editMyListElements\": () => (/* binding */ editMyListElements),\n/* harmony export */   \"listMyCompletedElements\": () => (/* binding */ listMyCompletedElements)\n/* harmony export */ });\n/* harmony import */ var _embedMyList_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./embedMyList.js */ \"./src/embedMyList.js\");\n/* harmony import */ var _localStorage_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./localStorage.js */ \"./src/localStorage.js\");\n/* harmony import */ var _drag_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./drag.js */ \"./src/drag.js\");\n\n\n\n\nfunction updateMyList () {\n    const checkMyBoxElements = document.querySelectorAll('.checkbox');\n    const descriptionElements = document.querySelectorAll('.description-text');\n    const dataBase = [];\n    for (let i = 0; i < checkMyBoxElements.length; i+=1){\n        dataBase.push({\n            completed : checkMyBoxElements[i].checked,\n            description : descriptionElements[i].value,\n            id : i + 1,\n        });\n    }\n    (0,_localStorage_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(dataBase);\n}\nconst dragDropEventListener = () => {\n  const dragDropMyElements = document.querySelectorAll('.to-do-Element');\n  const container = document.querySelector('.container');\n  const dataDragDrop = Array.from(dragDropMyElements);\n  const dataContainer = Array.from(container);\n\n    let dragElement = null;\n\n    dataDragDrop.forEach((element) => {\n    element.setAttribute('draggable', 'true');\n    element.addEventListener('dragstart', () => {\n        dragElement = element;\n    }\n    );\n    element.addEventListener('dragend', () => {\n        dragElement = null;\n    }\n    );\n }\n  );\n dataContainer.forEach((container) => {\n    container.addEventListener('dragover', (e) => {\n        e.preventDefault();\n    }\n    );\n    container.addEventListener('dragenter', (e) => {\n        e.preventDefault(); \n    }\n    );\n    container.addEventListener('drop', () => {\n        (0,_drag_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(dragElement, container.firstElementChild);\n        updateMyList();\n    }\n    );\n }\n );\n}\nconst listMyCompletedElements = () => {\n    const checkMyBoxElements = document.querySelectorAll('.checkbox');\n    const checkMyBoxData = Array.from(checkMyBoxElements);\n    checkMyBoxData.forEach((element) => {\n        element.addEventListener('change', (e) => {\n            (0,_embedMyList_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(e) ;\n            updateMyList();\n        }\n        );\n    }\n    );\n}\n\nconst addNewElements = () => {\n    const inputData = document.querySelector('.task-input');\n    inputData.addEventListener('keypress', (e) => {\n        if (e.key === 'Enter' && input.value !== '' && e.target.matches('.task-input') ){\n            addNewData();\n            updateMyList();\n        }\n    } ); \n} \nconst editMyListElements = () => {\n    const listInput = document.querySelectorAll('.description-text');\n    const listData = Array.from(listInput);\n\n    listData.forEach((data) => {\n        data.addEventListener('input', () => {\n            updateMyList();\n        }\n        );\n    }\n    );\n}\nconst deleteMyListElements = () => {\n    const myLists = document.querySelectorAll('.trash-icon');\n    const myListData = Array.from(myLists);\n    myListData.forEach((myLists) => {\n        myLists.addEventListener('click', (e) => {\n            deleteList(e);\n            updateMyList();\n        }\n        );\n    }\n    );\n}\n const deleteAllMyListElements = () => {\n    const clearLists = document.querySelector('.clear-all-btn');\n    clearLists.addEventListener('click', () => {\n        deleteAllList();\n        updateMyList();\n    }\n    );\n}\n\n\n\n//# sourceURL=webpack://web-pack/./src/eventSelector.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\n\nconst todoData = [\n  {\n    id: 1,\n    text: 'Take out the trash',\n    completed: true,\n  },\n\n  {\n    id: 2,\n    text: 'Grocery shopping',\n    completed: false,\n  },\n\n  {\n    id: 4,\n    text: 'Clean gecko tank',\n    completed: false,\n  },\n\n  {\n    id: 3,\n    text: 'Mow the lawn',\n    completed: true,\n  },\n];\n\nconst listContent = document.querySelector('.list-data');\n\ntodoData.sort((a, b) => a.id - b.id);\n\ntodoData.forEach((item) => {\n  const listItem = document.createElement('li');\n  listItem.className = 'list-item';\n  listItem.innerHTML = `\n        <input type=\"checkbox\" ${item.completed ? 'checked' : ''}>\n        <span>${item.text}</span>\n    `;\n  listContent.appendChild(listItem);\n});\n\n\n//# sourceURL=webpack://web-pack/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _src_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../../src/style.css */ \"./src/style.css\");\n/* harmony import */ var _addRemove_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./addRemove.js */ \"./src/addRemove.js\");\n/* harmony import */ var _localStorage_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./localStorage.js */ \"./src/localStorage.js\");\n\n\n\n\nlet listData = [];\n\nif (localStorage.getItem(\"todos\")) {\n    listData = JSON.parse(localStorage.getItem(\"todos\"));\n    (0,_addRemove_js__WEBPACK_IMPORTED_MODULE_1__.displayMyList)(listData);\n    (0,_addRemove_js__WEBPACK_IMPORTED_MODULE_1__.setMyEventListeners)();\n    }\n    else {\n        (0,_localStorage_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(listData);\n        (0,_addRemove_js__WEBPACK_IMPORTED_MODULE_1__.displayMyList)(listData);\n        (0,_addRemove_js__WEBPACK_IMPORTED_MODULE_1__.setMyEventListeners)();\n    }\n\n\n//# sourceURL=webpack://web-pack/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/localStorage.js":
+/*!*****************************!*\
+  !*** ./src/localStorage.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nfunction storage(todoList) {\n    localStorage.setItem('todos', JSON.stringify(todoList));\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (storage);\n\n//# sourceURL=webpack://web-pack/./src/localStorage.js?");
+
+/***/ }),
+
+/***/ "./src/myList.js":
+/*!***********************!*\
+  !*** ./src/myList.js ***!
+  \***********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nclass MyList {\n    constructor( description, completed , id) {\n        this.description = description;\n        this.completed = completed;\n        this.id = id;\n    }\n}\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MyList);\n\n\n    \n\n//# sourceURL=webpack://web-pack/./src/myList.js?");
 
 /***/ })
 
