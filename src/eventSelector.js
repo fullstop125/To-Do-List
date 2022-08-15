@@ -4,6 +4,9 @@ import storage from './localStorage.js';
 // eslint-disable-next-line import/no-cycle
 import { addMyNewList, deleteMyList, clearMyList } from './addRemove.js';
 
+/**
+ * It takes the data from the DOM and stores it in the database
+ */
 function updateMyList() {
   const checkMyBoxElements = document.querySelectorAll('.checkbox');
   const descriptionElements = document.querySelectorAll('.task-description');
