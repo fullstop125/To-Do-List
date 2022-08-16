@@ -1,6 +1,4 @@
 /**
- * It takes two arguments, the element being dragged and the element it's being dragged over, and swaps
- * their positions
  * @param dragElement - the element that is being dragged
  * @param currentTask - the task that is currently in the column
  */
