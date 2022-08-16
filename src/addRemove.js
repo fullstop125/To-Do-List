@@ -7,7 +7,6 @@ import {
   dragDropEventListener,
   listMyCompletedElements,
 } from './eventSelector.js';
-import MyList from './myList.js';
 
 const createToDo = (todo) => {
   const divCont = document.createElement('div');
@@ -54,7 +53,7 @@ function addMyNewList() {
   if (localStorage.getItem('todos')) {
     listData = JSON.parse(localStorage.getItem('todos'));
   }
-  listData.push(new MyList(inputData.value, false, listData.length + 1));
+  listData.push({ description: inputData.value, completed: false, id: listData.length + 1 });
   inputData.value = '';
   listDisplay.innerHTML = '';
   displayMyList(listData);
