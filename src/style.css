@@ -64,7 +64,11 @@ body {
   border-radius: 10px;
   color: white;
 }
-
+.list-data li i {
+  display: inline-block;
+  font-size: 24px;
+  cursor: pointer;
+}
 .list-data li {
   display: flex;
   align-items: center;
